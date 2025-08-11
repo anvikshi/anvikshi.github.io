@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Тестовый сайт</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+        header { background-color: #222; color: #fff; padding: 20px; }
+        nav { background: #eee; padding: 10px 20px; }
+        nav a { margin-right: 15px; color: #333; text-decoration: none; }
+        nav a:hover { text-decoration: underline; }
+        main { padding: 20px; }
+        section { display: none; }
+        section.active { display: block; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Добро пожаловать на эту скучную страницу!</h1>
+    </header>
+    <nav>
+        <a href="#home" id="link-home">Главная</a>
+        <a href="#about" id="link-about">О проекте</a>
+    </nav>
+    <main>
+        <section id="home" class="active">
+            <h2>Главная</h2>
+            <p>Это стартовая страница для тестирования всякого.</p>
+        </section>
+        <section id="about">
+            <h2>О проекте</h2>
+            <p>Этот сайт создан для экспериментов и проверки всякого разного.</p>
+        </section>
+    </main>
+    <script>
+        // Простая навигация между разделами без перезагрузки страницы
+        const sections = document.querySelectorAll('section');
+        function showSection(id) {
+            sections.forEach(sec => sec.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+        }
+        window.addEventListener('hashchange', () => {
+            const id = location.hash.substr(1) || 'home';
+            if(document.getElementById(id)) showSection(id);
+        });
+        // Показать правильный раздел при загрузке
+        window.addEventListener('DOMContentLoaded', () => {
+            const id = location.hash.substr(1) || 'home';
+            if(document.getElementById(id)) showSection(id);
+        });
+    </script>
+    <!-- Тут будет код -->
+</body>
+</html>
